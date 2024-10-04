@@ -1,6 +1,6 @@
 public class GameBoard {
 
-    char[][] Board = {{' ', ' ', ' '},
+    char[][] board = {{' ', ' ', ' '},
                       {' ', ' ', ' '},
                       {' ', ' ', ' '}};
 
@@ -8,12 +8,16 @@ public class GameBoard {
 
     }
 
+    public char[][] getBoard() {
+        return board;
+    }
+
     public void printBoard() {
-        System.out.println(Board[0][0] + "|" + Board[0][1] + "|" + Board[0][2]);
+        System.out.println(board[0][0] + "|" + board[0][1] + "|" + board[0][2]);
         System.out.println("-----");
-        System.out.println(Board[1][0] + "|" + Board[1][1] + "|" + Board[1][2]);
+        System.out.println(board[1][0] + "|" + board[1][1] + "|" + board[1][2]);
         System.out.println("-----");
-        System.out.println(Board[2][0] + "|" + Board[2][1] + "|" + Board[2][2]);
+        System.out.println(board[2][0] + "|" + board[2][1] + "|" + board[2][2]);
     }
 
     public boolean updateBoard(int position, char symbol) {
@@ -43,8 +47,8 @@ public class GameBoard {
     }
 
     private boolean placeMove(int row, int col, char symbol) {
-        if (Board[row][col] == ' ') {
-            Board[row][col] = symbol;
+        if (board[row][col] == ' ') {
+            board[row][col] = symbol;
             return true;
         } else {
             System.out.println("That spot is already taken, choose another!");
