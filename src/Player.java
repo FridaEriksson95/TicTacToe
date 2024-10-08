@@ -9,6 +9,7 @@ public class Player {
         this.name = name;
         this.symbol = symbol;
     }
+
     public String getName() {
         return name;
     }
@@ -21,14 +22,14 @@ public class Player {
         return wins;
     }
 
-//    public void incrementWins() {
+    //    public void incrementWins() {
 //        this.wins++;
 //    }
     public void setWins(Player opponent) {
         this.wins++;
         System.out.println(getName() + " wins the game and has a score of: " + getWins());
         System.out.println("The scoreboard is now: ");
-        System.out.println(getName() +  ": " + getWins() + " " + opponent.getName() + ": " + opponent.getWins());
+        System.out.println(getName() + ": " + getWins() + " " + opponent.getName() + ": " + opponent.getWins());
         System.out.println(" ");
     }
 
@@ -36,20 +37,6 @@ public class Player {
         System.out.println("Enter name for player " + symbol + ": ");
         String playerName = scanner.nextLine();
         return new Player(playerName, symbol);
-    }
-    /**
-     *
-     * @param game
-     * @param scanner
-     */
-    public void makeMove(GameBoard game, Scanner scanner) {
-        boolean validMove;
-        do {
-            System.out.println("Where would " + getName()  + " like to play their " + getSymbol() + " (1-9)?");
-            int move = scanner.nextInt();
-            validMove = game.updateBoard(move, getSymbol());
-            System.out.println(" ");
-        } while (!validMove);
     }
 }
 

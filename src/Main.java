@@ -6,7 +6,12 @@ steg 4: Göra en metod så att spelarna inte kan välja samma siffra
 steg 5. Göra en klass med en metod som kollar om någon spelare vunnit
 Steg 6. Skriv ut vem som vunnit eller om det blivit oavgjort.
 steg 7. Fråga om spelarna vill spela igen efter avslutat spel eller avsluta.
-steg 8. Gör en resultaträknadre.
+steg 8. Gör en resultaträknare.
+steg 9. Få så lite kod som möjligt i main och flytta resten till andra klasser.
+steg 10. Få allt att skrivas ut snyggt på brädan och fånga upp alla fel som kan bli.
+steg 11. Gå igenom koden och kolla om det är något som inte används/överflödigt.
+steg 12. Kontrollera kommentarer och snygga till.
+steg 13. Testkör, testkör, testkör för att hitta alla olika fel som kan komma.
  */
 
 import java.util.Scanner;
@@ -15,57 +20,14 @@ public class Main {
         Menu menu = new Menu();
         boolean playAgain = true;
 
+        GameBoard game = new GameBoard();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to TicTacToe! Let's start the game❗️");
-        Player playerX = Player.createPlayer(scanner, 'X');
-        Player playerO = Player.createPlayer(scanner, 'O');
+        game.setupPlayers(scanner);
 
         while (playAgain) {
-            playGame(playerX, playerO);
+            game.startGame(scanner);
 
-            int choice = menu.showMenu();
-            playAgain = choice == 1;
-            menu.handleMenuOption(choice);
-        }
-    }
-
-    public static void playGame(Player playerX, Player playerO) {
-        Scanner scanner = new Scanner(System.in);
-
-        GameBoard game = new GameBoard();
-        CheckWinner checkWinner = new CheckWinner();
-
-        boolean gameOver = false;
-
-        while (!gameOver) {
-            System.out.println(" ");
-            game.printBoard();
-
-            playerX.makeMove(game, scanner);
-            game.printBoard();
-            System.out.println(" ");
-            if (checkWinner.winnerCheck(game.getBoard(), playerX.getSymbol())) {
-                playerX.setWins(playerO);
-                gameOver = true;
-            } else if (checkWinner.isBoardFull(game.getBoard())) {
-                System.out.println("It's a tie!");
-                gameOver = true;
-            }
-
-            if (gameOver) {
-                break;
-            }
-
-            playerO.makeMove(game, scanner);
-            game.printBoard();
-            System.out.println(" ");
-            if (checkWinner.winnerCheck(game.getBoard(), playerO.getSymbol())) {
-                playerO.setWins(playerX);
-                gameOver = true;
-            } else if (checkWinner.isBoardFull(game.getBoard())) {
-                System.out.println("It's a tie!");
-                gameOver = true;
-            }
+            playAgain = menu.ifPlayAgain();
         }
     }
 }

@@ -14,6 +14,11 @@ public class Menu {
 
         return getUserChoice();
     }
+    public boolean ifPlayAgain() {
+        int choice = showMenu();
+        handleMenuOption(choice);
+        return choice == 1;
+    }
 
     private int getUserChoice() {
         int choice = 0;
