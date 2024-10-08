@@ -1,5 +1,10 @@
 public class CheckWinner {
-    // TODO gör en vinnarklass för att se vem som vann eller om det blivit oavgjort
+    /**
+     *
+     * @param board
+     * @param player
+     * @return
+     */
     public boolean winnerCheck(char[][] board, char player) {
         //rows
         for (int row = 0; row < board.length; row++) {
@@ -22,5 +27,21 @@ public class CheckWinner {
         }
         return false;
     }
-    //TODO fixa så att den printar ut om det blir lika.
+
+    /**
+     *
+     * @param board
+     * @return
+     */
+
+    public boolean isBoardFull(char[][] board) {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[row].length; col++) {
+                if (board[row][col] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

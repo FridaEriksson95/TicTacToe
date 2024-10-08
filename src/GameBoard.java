@@ -1,3 +1,5 @@
+import java.util.Scanner;
+//My gameBoard
 public class GameBoard {
 
     char[][] board = {{' ', ' ', ' '},
@@ -5,7 +7,6 @@ public class GameBoard {
                       {' ', ' ', ' '}};
 
     public GameBoard() {
-
     }
 
     public char[][] getBoard() {
@@ -13,15 +14,20 @@ public class GameBoard {
     }
 
     public void printBoard() {
-        System.out.println(board[0][0] + "|" + board[0][1] + "|" + board[0][2]);
-        System.out.println("-----");
-        System.out.println(board[1][0] + "|" + board[1][1] + "|" + board[1][2]);
-        System.out.println("-----");
-        System.out.println(board[2][0] + "|" + board[2][1] + "|" + board[2][2]);
+        System.out.println(" " + board[0][0] + " ║ " + board[0][1] + " ║ " + board[0][2]);
+        System.out.println("═══╬═══╬═══");
+        System.out.println(" " + board[1][0] + " ║ " + board[1][1] + " ║ " + board[1][2]);
+        System.out.println("═══╬═══╬═══");
+        System.out.println(" " + board[2][0] + " ║ " + board[2][1] + " ║ " + board[2][2]);
     }
 
+    /**
+     * @param position
+     * @param symbol
+     * @return
+     */
     public boolean updateBoard(int position, char symbol) {
-        switch(position) {
+        switch (position) {
             case 1:
                 return placeMove(0, 0, symbol);
             case 2:
@@ -46,7 +52,14 @@ public class GameBoard {
         }
     }
 
-    private boolean placeMove(int row, int col, char symbol) {
+    /**
+     * @param row
+     * @param col
+     * @param symbol
+     * @return
+     */
+
+    public boolean placeMove(int row, int col, char symbol) {
         if (board[row][col] == ' ') {
             board[row][col] = symbol;
             return true;
