@@ -17,15 +17,21 @@ steg 13. Testkör, testkör, testkör för att hitta alla olika fel som kan komm
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+       //create menu
         Menu menu = new Menu();
+        //if players choose to play again, new game starts if true
         boolean playAgain = true;
 
-        GameBoard game = new GameBoard();
         Scanner scanner = new Scanner(System.in);
-        game.setupPlayers(scanner);
+        //call method to create players
+        Player[] players = Player.setupPlayers(scanner);
 
+        //play again menu loop
         while (playAgain) {
-            game.startGame(scanner);
+            //create board
+            GameBoard game = new GameBoard();
+
+            game.startGame(players[0], players[1], scanner);
 
             playAgain = menu.ifPlayAgain();
         }

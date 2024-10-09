@@ -1,9 +1,9 @@
 public class CheckWinner {
     /**
-     *
+     * Checks if specific player has won the game by controlling each winner combinations(row, col,diagnoal)
      * @param board
      * @param player
-     * @return
+     * @return true if specified player has three symbols in a row, otherwise false
      */
     public boolean winnerCheck(char[][] board, char player) {
         //rows
@@ -18,7 +18,7 @@ public class CheckWinner {
                 return true;
             }
         }
-        //diagonal
+        //diagonals
         if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
             return true;
         }
@@ -29,11 +29,10 @@ public class CheckWinner {
     }
 
     /**
-     *
-     * @param board
-     * @return
+     * Checks if the board is full, if a cell is occupied or empty
+     * @param board my 2D array gameboard
+     * @return true if board is full
      */
-
     public boolean isBoardFull(char[][] board) {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[row].length; col++) {
