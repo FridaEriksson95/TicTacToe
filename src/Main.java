@@ -11,13 +11,14 @@ steg 9. Få så lite kod som möjligt i main och flytta resten till andra klasse
 steg 10. Få allt att skrivas ut snyggt på brädan och fånga upp alla fel som kan bli.
 steg 11. Gå igenom koden och kolla om det är något som inte används/överflödigt.
 steg 12. Kontrollera kommentarer och snygga till.
-steg 13. Testkör, testkör, testkör för att hitta alla olika fel som kan komma.
+steg 14. Testkör, testkör, testkör för att hitta alla olika fel som kan komma.
+steg 15. Skapa en random Ai bot och alternativ till vem spelaren vill möta. TESTKÖR!
  */
 
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-       //create menu
+        //create menu
         Menu menu = new Menu();
         //if players choose to play again, new game starts if true
         boolean playAgain = true;

@@ -5,9 +5,9 @@ public class GameBoard {
     //instance to determine a winner after players move
     CheckWinner checkWinner = new CheckWinner();
 
-    // the outprinted gameboard for players to visualize where to play
+    // the rows and cols for the board with the spaces to fill
     char[][] board =
-            {{' ', ' ', ' '},
+                    {{' ', ' ', ' '},
                     {' ', ' ', ' '},
                     {' ', ' ', ' '}};
 
@@ -30,14 +30,19 @@ public class GameBoard {
     }
 
     /**
-     * Method for players to make a move on the board
+     * Method for players and Ai to make a move on the board
      * @param player
      * @param scanner
      */
     public void makeMove(Player player, Scanner scanner) {
-        boolean validMove;
+        //If choosen to play with Ai, method to place its move
+        if(player instanceof CPU) {
+            int move = ((CPU) player).chooseMove(this);
+            System.out.println("AI bot chooses position: " + move);
+        }else {
+            boolean validMove;
         do {
-        // Getting players input between 1-9
+            //Getting players input between 1-9
             System.out.println("Where would " + player.getName() + " like to play their " + player.getSymbol() + " (1-9)?");
             try {
             //Gets the valid move and place it on the board
@@ -51,9 +56,10 @@ public class GameBoard {
             System.out.println(" ");
         } while (!validMove);
     }
+    }
 
     /**
-     * Method to play the game
+     * Method to play the game with either two players or player vs AI
      * @param playerX
      * @param playerO
      * @param scanner
@@ -61,39 +67,38 @@ public class GameBoard {
     public void playGame(Player playerX, Player playerO, Scanner scanner) {
         boolean gameOver = false;
 
-        //when game is not over, the board prints out
+        //When game is not over, the board prints out
         while (!gameOver) {
             System.out.println(" ");
             printBoard();
 
-            //player x makes their move
+            //Player x makes their move
             makeMove(playerX, scanner);
             printBoard();
-            System.out.println(" ");
 
-            //Method checks if player x wins on their past move
+            //Calls method that checks if player x wins on their past move
             if (checkWinner.winnerCheck(getBoard(), playerX.getSymbol())) {
-            //counts player x:s wins
+                //Counts player X:s wins
                 playerX.setWins(playerO);
-            //if player x gets three in a row,col or diagnoal, game ends
+                //If player x gets three in a row,col or diagnoal, game ends
                 gameOver = true;
-            //if no one wins, it checks and prints out tie
+                //If no one wins, it checks and prints out tie
             } else if (checkWinner.isBoardFull(getBoard())) {
                 System.out.println("It's a tie!");
                 gameOver = true;
             }
             if (gameOver)
                 break;
-            //player O makes their move
-            makeMove(playerO, scanner);
-            printBoard();
-            System.out.println(" ");
 
-            //Method checks if player o wins on their past move
+            //Player O makes their move
+            makeMove(playerO, scanner);
+
+            //Calling method that checks if player o wins on their past move
             if (checkWinner.winnerCheck(getBoard(), playerO.getSymbol())) {
-                //counts player o:s wins
+                //Counts player O:s wins
                 playerO.setWins(playerX);
                 gameOver = true;
+                printBoard();
             } else if (checkWinner.isBoardFull(getBoard())) {
                 System.out.println("It's a tie!");
                 gameOver = true;
@@ -108,7 +113,6 @@ public class GameBoard {
      * @param symbol representing the players symbol, X and O
      * @return if move was successfull the symbol is placed, false if spot is taken
      */
-
     public boolean placeMove(int row, int col, char symbol) {
         if (board[row][col] == ' ') {
             board[row][col] = symbol;
@@ -120,8 +124,8 @@ public class GameBoard {
     }
 
     /**
-     * Places the players symbols on the board by positioning with number 1-9, where 1 is top left  and 9 is bottom right
-     * @param position positioning where the players wants to place symbbol
+     * Places the players symbols on the board by positioning with number 1-9, where 1 is top left and 9 is bottom right
+     * @param position positioning where the player wants to place symbol
      * @param symbol the representing of players character, x or o
      * @return place true if successfull position, false if taken spot or incorrect move
      */

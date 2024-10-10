@@ -10,17 +10,16 @@ public class Menu {
     }
 
     /**
-     * the selections for the menu
-     * @return
+     * the selections for the menu when the game ends
+     * @return choice
      */
     public int showMenu() {
-        System.out.println("Would you like to play again?");
-        System.out.println("1. Yes please! Start a new game!");
-        System.out.println("2. No, we're fine. Please exit.");
+        System.out.println("Would you like to play again? ❌⭕️");
+        System.out.println("1. Yes please! Start a new game️❗️");
+        System.out.println("2. No, we're fine. Please exit🚫");
 
         return getUserChoice();
     }
-
     /**
      * A switch-case to treat the players option in menu
      * makes it easier to add more alternatives to the menu
@@ -57,7 +56,7 @@ public class Menu {
             try {
                 //converts string to int
                 choice = Integer.parseInt(input);
-                //checks if input is bigger then/or equals to 1 and if input is smaller then/or equals to 2
+                //checks if input is bigger than/or equals to 1 and if input is smaller than/or equals to 2
                 if (choice >= 1 && choice <= 2) {
                     valid = true;
                 //if input is not 1 or 2, this prints out
